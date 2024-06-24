@@ -26,8 +26,6 @@ function ChatRoom(props) {
     return (
         <div>
             <h1>Chat Room</h1>
-            <h1>Test CI</h1>
-            <h1>Checking</h1>
             <ul>
                 {chatroom.map((item) => (
                     <li key={item.id}>{item.name}</li>
