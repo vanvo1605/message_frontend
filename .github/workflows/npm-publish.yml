@@ -1,79 +1,34 @@
-name: React App Deployment # name of the workflo
-
-
+name: CI/CD
 
 on:
-
-  push:
-
-    branches:
-
-      - main # branch name
-
-
+push:
+branches: [ main ]
+pull_request:
+branches: [ main ]
 
 jobs:
+build:
 
-  deploy-react-to-gh-pages:
+runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+strategy:
+matrix:
+node-version: [12.x]
 
-    env:
+steps:
+- name: Checkout repository
+uses: actions/checkout@v2
 
-      EXAMPLE: example # environment variable
+- name: Set up Node.js ${{ matrix.node-version }}
+uses: actions/setup-node@v1
+with:
+node-version: ${{ matrix.node-version }}
 
+- name: Install dependencies
+run: npm install
 
+- name: Run the tests
+run: npm test
 
-    steps:
-
-      # checkout the repository content to github runner
-
-      - name: Checkout
-
-        uses: actions/checkout@v2
-
-
-
-      # setup nodejs environment
-
-      - name: Setup Node.js environment
-
-        uses: actions/setup-node@v2.1.5
-
-        with:
-
-          node-version: "18.16.1"
-
-
-
-      # cache the dependencies to speed up the build
-
-      - name: Cache dependencies
-
-        uses: actions/cache@v2
-
-        with:
-
-          path: ~/.npm
-
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-
-          restore-keys: |
-
-            ${{ runner.os }}-node-
-
-
-
-      # install dependencies
-
-      - name: Install dependencies
-
-        run: npm i
-
-
-
-      # build the react app
-
-      - name: Build
-
-        run: npm run build
+- name: Build
+run: npm run build
