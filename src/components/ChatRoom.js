@@ -14,10 +14,12 @@ function ChatRoom(props) {
 
         axios.request(config)
             .then((response) => {
+                console.log('---------------------------');
                 console.log(JSON.stringify(response.data));
                 setChatroom(response.data)
             })
             .catch((error) => {
+                console.log('----------//-----------------');
                 console.log(error);
             });
 

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import {BaseURL} from "../consistents";
 
 function NumberSumUp(props) {
     const [startNum, setStartNum] = useState(0)
@@ -16,24 +17,24 @@ function NumberSumUp(props) {
 
     function cal() {
         let data = JSON.stringify({
-            "start_num": {startNum},
-            "end_num": {endNumber}
+            "start_num": startNum,
+            "end_num": endNumber
         });
         console.log("==========-> ", data);
         let config = {
             method: 'post',
             maxBodyLength: Infinity,
-            url: 'https://ssim-lemon.vercel.app//api/sum_numbers/',
+            url: BaseURL + 'api/sum_numbers/',
             headers: {
                 'Content-Type': 'application/json'
             },
             data: data
         };
 
-        axios.request(config)
+            axios.request(config)
             .then((response) => {
-                console.log(JSON.stringify(response.data));
-                setResult(response.data)
+            console.log(JSON.stringify(response.data));
+            setResult(response.data.result)
             })
             .catch((error) => {
                 console.log(error);
