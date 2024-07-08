@@ -42,12 +42,12 @@ function NumberSumUp(props) {
 
     return (
         <div>
-            <p>Start Number: <input type={"number"} id={'start'} onChange={start_num_handler}/></p>
-            <p>End Number: <input type={"number"} id={'end'} onChange={end_numb_handler}/></p>
+            <p>Start Number: <input type={"number"} id={"start"} onChange={start_num_handler}/></p>
+            <p>End Number: <input type={"number"} id={"end"} onChange={end_numb_handler}/></p>
             <p>
-                <button id={'calbtn'} onClick={cal}>Calculate</button>
+                <button id={"calbtn"} onClick={cal}>Calculate</button>
             </p>
-            <p id={'result'}>Result: {result}</p>
+            <p id={"result"}>Result: {result}</p>
         </div>
     );
 }
