@@ -20,7 +20,6 @@ function NumberSumUp(props) {
             "start_num": startNum,
             "end_num": endNumber
         });
-        console.log("==========-> ", data);
         let config = {
             method: 'post',
             maxBodyLength: Infinity,
@@ -48,7 +47,7 @@ function NumberSumUp(props) {
             <p>
                 <button id={'calbtn'} onClick={cal}>Calculate</button>
             </p>
-            <p>Result: {result}</p>
+            <p id="result">Result: {result}</p>
         </div>
     );
 }
